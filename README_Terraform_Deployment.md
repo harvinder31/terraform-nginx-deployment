@@ -1,65 +1,42 @@
+# Terraform Deployment for Dockerized Web Application on AWS
 
-# AWS Dockerized Web Application Deployment with Terraform
+This repository contains Terraform scripts to deploy a Dockerized web application on AWS with the following features:
+- Utilizes an S3 bucket for file storage
+- Fronted by a CloudFront CDN for improved performance
+- Managed domain name using Amazon Route 53
+- Implements auto-scaling for handling varying workloads
 
-This project sets up a Dockerized web application on AWS using Terraform. It integrates various AWS services such as EC2, S3, CloudFront, Auto-scaling, and Route 53 to create a scalable, high-performance web infrastructure.
-/terraform-nginx-deployment
-│
-├── main.tf          # Main Terraform configuration
-├── variables.tf     # Terraform variables
-├── outputs.tf       # Terraform outputs
-├── provider.tf      # Provider configuration
-│
-├── .gitignore       # Specifies intentionally untracked files to ignore
-└── README.md        # Detailed project documentation
-## Project Architecture
+## Structure
 
-- **EC2 Instance**: Hosts the Docker container for the web application.
-- **S3 Bucket**: Used for storing user-uploaded files.
-- **CloudFront Distribution**: Distributes the web application content globally to reduce latency.
-- **Auto-Scaling Group**: Manages the scaling of EC2 instances based on load.
-- **Route 53**: Manages DNS records for the application, directing traffic to the CloudFront distribution.
+- `provider.tf`: Configures the AWS provider with the necessary credentials and region.
+- `main.tf`: Contains all the Terraform configuration to deploy the web application, including S3, EC2, CloudFront, Auto 
+  Scaling, and Route 53.
+- `variables.tf`: Defines the variables used in the configuration.
+- `outputs.tf`: Outputs important information after deployment.
 
-## Prerequisites
+## Environment Variables
 
-- AWS account with appropriate permissions
-- Terraform installed on your machine
+The following environment variables need to be set in your Terraform scripts:
+- `AWS_ACCESS_KEY_ID`: Your AWS Access Key ID.
+- `AWS_SECRET_ACCESS_KEY`: Your AWS Secret Access Key.
+- `S3_BUCKET_NAME`: The name of the S3 bucket.
+- `AWS_REGION`: The AWS region to deploy resources (default is `us-west-2`).
+- `DOMAIN_NAME`: The domain name for the Route 53 hosted zone.
 
-## Environment Variables Configuration
+## Usage
 
-Environment variables are crucial for integrating the Docker container with AWS services. They are set in the `aws_instance` resource in `main.tf` using the `user_data` attribute. The following variables are configured:
+1. **Clone the repository:**
 
-- `AWS_ACCESS_KEY_ID`
-- `AWS_SECRET_ACCESS_KEY`
-- `S3_BUCKET_NAME`
-- `AWS_REGION`
+   ```sh
+   git clone https://github.com/harvinder31/terraform-nginx-deployment.git
+   cd terraform-nginx-deployment
 
-## Deployment Steps
+## Initialize Terraform:
+- terraform init
+## Plan the deployment:
+- terraform plan
+## Apply the configuration:
+- terraform apply 
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/harvinder31/terraform-nginx-deployment
-   ```
 
-2. Navigate to the project directory and initialize Terraform:
-   ```bash
-   terraform init
-   ```
-
-3. Apply the Terraform configuration to deploy the infrastructure:
-   ```bash
-   terraform apply
-   ```
-
-4. Confirm the changes and execute the deployment.
-
-## Special Considerations
-
-- Ensure the AWS credentials used have the minimal necessary permissions for security best practices.
-- Monitor CloudFront costs, as global distribution can incur higher charges.
-- Adjust auto-scaling settings based on expected traffic patterns to optimize costs.
-
-## GitHub Repository
-
-All necessary Terraform scripts and the README are available at:
-https://github.com/harvinder31/terraform-nginx-deployment
 

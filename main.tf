@@ -27,7 +27,7 @@ resource "aws_instance" "web_app" {
               sudo amazon-linux-extras install docker
               sudo service docker start
               sudo usermod -a -G docker ec2-user
-              docker run -d -p 80:80 -e AWS_ACCESS_KEY_ID=${var.aws_access_key_id} -e AWS_SECRET_ACCESS_KEY=${var.aws_secret_access_key} -e S3_BUCKET_NAME=${var.s3_bucket_name} -e AWS_REGION=${var.aws_region} techamror007/node-hello
+              docker run -d -p 80:80 -e AWS_ACCESS_KEY_ID=${var.aws_access_key_id} -e AWS_SECRET_ACCESS_KEY=${var.aws_secret_access_key} -e S3_BUCKET_NAME=${var.s3_bucket_name} -e AWS_REGION=${var.aws_region} nginx
               EOF
 
   tags = {
@@ -115,7 +115,7 @@ resource "aws_launch_configuration" "web_app_lc" {
               sudo amazon-linux-extras install docker
               sudo service docker start
               sudo usermod -a -G docker ec2-user
-              docker run -d -p 80:80 -e AWS_ACCESS_KEY_ID=${var.aws_access_key_id} -e AWS_SECRET_ACCESS_KEY=${var.aws_secret_access_key} -e S3_BUCKET_NAME=${var.s3_bucket_name} -e AWS_REGION=${var.aws_region} techamror007/node-hello
+              docker run -d -p 80:80 -e AWS_ACCESS_KEY_ID=${var.aws_access_key_id} -e AWS_SECRET_ACCESS_KEY=${var.aws_secret_access_key} -e S3_BUCKET_NAME=${var.s3_bucket_name} -e AWS_REGION=${var.aws_region} nginx
               EOF
 
   lifecycle {

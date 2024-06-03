@@ -36,7 +36,8 @@ The following environment variables need to be set in your Terraform scripts:
 ## Plan the deployment:
 - terraform plan
 ## Apply the configuration:
-- terraform apply 
+-terraform apply
 
+## This setup will deploy your Dockerized web application on AWS, configure it to use an S3 bucket for storage, front it with a CloudFront CDN, manage the domain with Route 53, and implement auto-scaling for efficient resource management.
 
 
